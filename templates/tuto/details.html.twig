@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le tuto{% endblock %}
+
+{% block body %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">{{ tuto.name }}</h1>
+
+            <img src="/uploads/{{ tuto.image }}" style="width:100%; margin-top: 20px; margin-bottom:20px;"/>
+
+            <div class="lead text-body-secondary text-start">
+                {{ tuto.description | raw }}
+            </div>
+
+            <p>
+                <a href="{{ tuto.link }}" target="_blank" class="btn btn-primary my-2">Acheter le tuto</a>
+                <a href="https://anthonyc.gumroad.com/l/formations-prompt-engineer" target="_blank" class="btn btn-secondary my-2">En savoir plus</a>
+            </p>
+
+            <h2>Trailer</h2>
+            <div class="text-center iframe-container">
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="{{ tuto.video | replace({'watch': 'embed', '?v=': '/'}) }}" 
+                    title="Trailer {{ tuto.name }}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur formation facile {% endblock %}
+
+{% block body %}
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Formation Facile</h1>
+                <p class="lead text-body-secondary"> Bienvenue sur le meilleur site de formations vidéo en français par Paolo !</p>
+                <p>
+                <a href="#" class="btn btn-primary my-2">Voir les formations</a>
+                <a href="#" class="btn btn-secondary my-2">En savoir plus</a>
+                </p>
+            </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            
+            {% for tuto in tutos %}
+            <!-- Item -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img width="100%" height="225" src="/uploads/{{ tuto.image }}" />
+                    <div class="card-body">
+                        <p class="card-text">{{ tuto.name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                            <a href="{{ path('app_tuto_details', { 'slug' : tuto.slug }) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
+                            {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Éditer</button>
+                            {% endif %}
+                            </div>
+                            <small class="text-body-secondary">#{{ tuto.id }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+                
+            </div>
+            </div>
+        </div>
+{% endblock %}
